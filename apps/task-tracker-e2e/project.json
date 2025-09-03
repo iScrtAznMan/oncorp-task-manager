@@ -1,0 +1,9 @@
+{
+  "name": "task-tracker-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/task-tracker-e2e/src",
+  "implicitDependencies": ["task-tracker"],
+  "// targets": "to see all targets run: nx show project task-tracker-e2e --web",
+  "targets": {}
+}
