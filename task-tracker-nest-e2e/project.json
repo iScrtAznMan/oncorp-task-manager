@@ -1,0 +1,17 @@
+{
+  "name": "task-tracker-nest-e2e",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "implicitDependencies": ["task-tracker-nest"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
+      "options": {
+        "jestConfig": "task-tracker-nest-e2e/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "dependsOn": ["task-tracker-nest:build", "task-tracker-nest:serve"]
+    }
+  }
+}

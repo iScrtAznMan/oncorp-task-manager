@@ -1,0 +1,16 @@
+<p>task-list works!</p>
+
+<form (ngSubmit)="submitForm()">
+    <label for="name">Name:</label>
+    <input id="name" type="text" [(ngModel)]="formData.name" name="name" required>
+    <br/>
+    <button type="submit">Add Task List</button>
+</form>
+
+<ul>
+    @for (item of this.taskList; track $index) {
+        <li>{{item.name}}</li>
+    } @empty {
+        <li>No items found.</li>
+    }
+</ul>
