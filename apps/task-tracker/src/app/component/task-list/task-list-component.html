@@ -1,40 +1,50 @@
 <h1>Current Tasks</h1>
 <ol>
   @for(item of this.tasks?.tasks; track $index) {
-      <li>
-          <a [routerLink]="['tasks', item.id]">{{item.name}}</a> | {{item.complete}}
-      </li>
-  } @empty {
-      No tasks in this list.
-  }
+  <li>
+    <a [routerLink]="['tasks', item.id]">{{item.name}}</a> | {{item.complete}}
+  </li>
+  } @empty { No tasks in this list. }
 </ol>
 
-<hr>
+<hr />
 
-<div>
-  Add new task list:
-  <form (ngSubmit)="submitForm()">
-    <div>
-      <label for="name">Name:</label>
-      <input id="name" type="text" [(ngModel)]="formData.name" name="name" #name="ngModel" required>
-      @if(name.invalid && (name.dirty || name.touched)) {
+<div class="input">
+  <div class="input-header">Add new task list:</div>
+  <div class="input-body">
+    <form (ngSubmit)="submitForm()">
+      <div>
+        <label for="name">Name:</label>
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="formData.name"
+          name="name"
+          #name="ngModel"
+          required
+        />
+        @if(name.invalid && (name.dirty || name.touched)) {
         <div class="alert">
           @if (name.hasError('required')) {
-            <div>
-              Name is required.
-            </div>
+          <div>Name is required.</div>
           }
-          </div>
+        </div>
         }
-    </div>
-    <div>
-      <label for="description">Description:</label>
-    </div>
-    <div>
-      <textarea id="description" placeholder="Add details here . . ." [(ngModel)]="formData.description" name="description"></textarea>
-    </div>
-    <div>
-      <button type="submit" [disabled]="!formData.name">Add Task</button>
-    </div>
-  </form>
+      </div>
+      <div>
+        <label for="description">Description:</label>
+      </div>
+      <div>
+        <textarea
+          id="description"
+          placeholder="Add details here . . ."
+          [(ngModel)]="formData.description"
+          name="description"
+        ></textarea>
+      </div>
+      <div>
+        <button class="button submit-button" type="submit" [disabled]="!formData.name">Add Task</button>
+      </div>
+    </form>
+  </div>
 </div>

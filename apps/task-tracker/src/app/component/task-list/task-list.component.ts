@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
     selector: 'app-task-list',
     imports:[FormsModule, RouterLink],
     templateUrl: './task-list-component.html',
-    styleUrl: './task-list-component.css',
+    styleUrl: './task-list-component.scss',
 })
 export class TaskListComponent {
     readonly taskId:string;

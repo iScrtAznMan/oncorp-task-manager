@@ -4,26 +4,32 @@
     @for (item of this.taskList ; track item.id) {
         <li class="task-list">
             <a [routerLink]="['lists', item.id]">{{item.name}}</a>
-            <input value="Delete" type="button" class="delete-button" (click)="deleteList(item.id)"/>
+            <input value="Delete" type="button" class="delete-button button" (click)="deleteList(item.id)"/>
         </li>
     } @empty {
         <li>No items found.</li>
     }
 </ul>
 <hr>
-<div>Add new task list:</div>
-<form (ngSubmit)="submitForm()">
-    <label for="name">Name:</label>
-    <input id="name" type="text" [(ngModel)]="formData.name" name="name" #name="ngModel" required>
-    @if(name.invalid && (name.dirty || name.touched)) {
-      <div class="alert">
-        @if (name.hasError('required')) {
-          <div>
-            Name is required.
+<div class="input">
+  <div class="input-header">Add new task list:</div>
+  <div class="input-body">
+    <form (ngSubmit)="submitForm()">
+      <label for="name">Name:</label>
+      <input id="name" type="text" [(ngModel)]="formData.name" name="name" #name="ngModel" required>
+      @if(name.invalid && (name.dirty || name.touched)) {
+        <div class="alert">
+          @if (name.hasError('required')) {
+            <div>
+              Name is required.
+            </div>
+          }
           </div>
         }
-        </div>
-      }
-    <br/>
-    <button type="submit" [disabled]="!formData.name">Add Task List</button>
-</form>
+      <br/>
+      <button class="button submit-button" type="submit" [disabled]="!formData.name">Add Task List</button>
+  </form>
+  </div>
+</div>
+
+

@@ -1,15 +1,14 @@
 .task {
-  display:flex;
-  flex-direction: column;
-  margin: 1rem;
-  gap:1rem;
-  border: solid black;
-  justify-content: space-between;
+  margin: auto;
 }
 
 .row {
   display: flex;
   flex-direction: row;
   gap:1rem;
-  
+
+}
+
+.row:last-child {
+  justify-content: flex-end;
 }

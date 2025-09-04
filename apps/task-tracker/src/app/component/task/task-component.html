@@ -1,18 +1,25 @@
-<div class="task">
-  <div class="row">
-    <div>Task Name:</div>
-    <div>{{this.task?.name}}</div>
+<div class="input task">
+  <div class="input-header row">
+    <span>Task Name:</span>
+    <span>{{this.task?.name}}</span>
   </div>
-  <div class="row">
-    <div>Description:</div>
-    <div>{{this.task?.description}}</div>
+  <div class="input-body">
+    <div class="row">
+      <div>Description:</div>
+      <div>{{this.task?.description}}</div>
+    </div>
+    <div class="row">
+      <div>Completed:</div>
+      <div>
+        <input
+          type="checkbox"
+          [checked]="this.task?.complete"
+          (change)="onCompleteChange($event)"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <a class="delete-button button" (click)="deleteTask($event)">Delete</a>
+    </div>
   </div>
-  <div class="row">
-    <div>Completed: </div>
-    <div><input type="checkbox" [checked]="this.task?.complete" (change)="onCompleteChange($event)"></div>
-  </div>
-<div>
-  <a class="delete-button" (click)="deleteTask($event)">Delete</a>
-</div>
-
 </div>
