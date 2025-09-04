@@ -4,6 +4,7 @@
     @for (item of this.taskList ; track item.id) {
         <li>
             <a [routerLink]="['lists', item.id]">{{item.name}}</a>
+            <button type="button" class="delete-button" (click)="deleteList(item.id)">Delete</button>
         </li>
     } @empty {
         <li>No items found.</li>

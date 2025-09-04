@@ -18,6 +18,10 @@ export class TaskService{
         return this.http.post(this.urlLists, body);
     }
 
+    public deleteTaskList(id:string) {
+      return this.http.delete(this.urlLists+"/"+id);
+    }
+
     public getAllTaskList() {
         let api = this.urlLists;
         return this.http.get<TaskList[]>(api);

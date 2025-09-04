@@ -7,3 +7,11 @@ html,body, .main{
   height:100vh;
   margin: 0;
 }
+
+.delete-button{
+  border: solid red;
+  border-radius:25%;
+  color:red;
+  margin: .1rem;
+  padding: .1rem
+}

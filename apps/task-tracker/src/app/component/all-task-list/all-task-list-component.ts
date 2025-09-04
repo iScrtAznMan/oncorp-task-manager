@@ -19,9 +19,11 @@ export class AllTaskListComponent {
     name:''
   };
 
-  response:any;
-
   constructor(public taskService: TaskService) {
+  }
+
+  ngOnInit(){
+    this.taskService.getAllTaskList().subscribe(data => this.taskList = data as TaskList[]);
   }
 
   submitForm() {
@@ -30,8 +32,10 @@ export class AllTaskListComponent {
     .subscribe(data => this.taskList = data);
   }
 
-  ngOnInit(){
-    this.taskService.getAllTaskList().subscribe(data => this.taskList = data as TaskList[]);
+  deleteList(id:number) {
+    this.taskService.deleteTaskList(""+id).pipe(switchMap(
+      ()=>this.taskService.getAllTaskList()
+    )).subscribe(data => this.taskList=data);
   }
 
 }

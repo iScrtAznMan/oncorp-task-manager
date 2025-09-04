@@ -3,7 +3,6 @@ import { Task } from "../entities/task.entity";
 
 export class TaskListDto {
     constructor(tl: TaskList) {
-        console.log(tl);
         if(tl) {
             this.id = tl.id;
             this.tasks = Array.from(tl.tasks.values());

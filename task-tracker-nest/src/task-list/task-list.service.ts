@@ -78,7 +78,7 @@ export class TaskListService {
   }
 
   remove(id: number) {
-    if(this.tasksListView[id]) {
+    if(this.tasksListView.get(id)) {
       this.tasksListView.delete(id);
       this.taskLists.delete(id);
       return true;
