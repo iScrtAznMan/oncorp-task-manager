@@ -1,16 +1,26 @@
-<p>task-list works!</p>
+<p>
+    testing if we are working
+</p>
+<p>
+    {{taskList?.name}}
+</p>
 
+<h2>Add new task list:</h2>
 <form (ngSubmit)="submitForm()">
     <label for="name">Name:</label>
     <input id="name" type="text" [(ngModel)]="formData.name" name="name" required>
+    <label for="complete">Completed:</label>
+    <input id="complete" type="checkbox" [(ngModel)]="formData.complete" name="complete">
     <br/>
-    <button type="submit">Add Task List</button>
+    <button type="submit">Add Task</button>
 </form>
 
-<ul>
-    @for (item of this.taskList; track $index) {
-        <li>{{item.name}}</li>
+<ol>
+    @for(item of this.taskList?.tasks; track $index) {
+        <li>
+            {{item.name}} | {{item.complete}}
+        </li>
     } @empty {
-        <li>No items found.</li>
+        <li>No tasks in this list.</li>
     }
-</ul>
+</ol>

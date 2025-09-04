@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TaskListComponent } from './component/task-list/task-list-component';
+import { AllTaskListComponent } from './component/all-task-list/all-task-list-component';
 
 @Component({
-  imports: [TaskListComponent, RouterModule],
+  imports: [AllTaskListComponent, RouterModule],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',

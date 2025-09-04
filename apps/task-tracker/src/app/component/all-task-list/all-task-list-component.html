@@ -1,0 +1,18 @@
+<h1>Current Task Lists:</h1>
+
+<ul>
+    @for (item of this.taskList | keyvalue; track item.key) {
+        <li>
+            <a [routerLink]="['taskList', item.key]">{{item.value.name}}</a>
+        </li>
+    } @empty {
+        <li>No items found.</li>
+    }
+</ul>
+<h2>Add new task list:</h2>
+<form (ngSubmit)="submitForm()">
+    <label for="name">Name:</label>
+    <input id="name" type="text" [(ngModel)]="formData.name" name="name" required>
+    <br/>
+    <button type="submit">Add Task List</button>
+</form>
