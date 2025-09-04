@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { TaskList } from '../component/all-task-list/task-list';
 import { HttpClient } from '@angular/common/http';
+import { Task } from '../component/task-list/task';
 
 @Injectable({providedIn:'root'})
 export class TaskService{
@@ -23,13 +24,13 @@ export class TaskService{
     }
 
     public getTaskList(id:string) {
-        let api = this.urlLists+id;
+        let api = this.urlLists+"/"+id;
         return this.http.get<TaskList>(api);
     }
 
     public getTasks(id:string) {
       let api = this.urlLists+"/"+id+"/tasks";
-      return this.http.get<Task[]>(api);
+      return this.http.get<any>(api);
     }
 
     public addTask(id:string, body:any) {

@@ -16,7 +16,7 @@
 </form>
 
 <ol>
-    @for(item of this.taskList?.tasks; track $index) {
+    @for(item of this.tasks; track $index) {
         <li>
             {{item.name}} | {{item.complete}}
         </li>
