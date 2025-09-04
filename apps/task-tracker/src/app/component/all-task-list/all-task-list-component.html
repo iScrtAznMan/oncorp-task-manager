@@ -14,7 +14,16 @@
 <div>Add new task list:</div>
 <form (ngSubmit)="submitForm()">
     <label for="name">Name:</label>
-    <input id="name" type="text" [(ngModel)]="formData.name" name="name" required>
+    <input id="name" type="text" [(ngModel)]="formData.name" name="name" #name="ngModel" required>
+    @if(name.invalid && (name.dirty || name.touched)) {
+      <div class="alert">
+        @if (name.hasError('required')) {
+          <div>
+            Name is required.
+          </div>
+        }
+        </div>
+      }
     <br/>
-    <button type="submit">Add Task List</button>
+    <button type="submit" [disabled]="!formData.name">Add Task List</button>
 </form>

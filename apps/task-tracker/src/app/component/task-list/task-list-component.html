@@ -16,7 +16,16 @@
   <form (ngSubmit)="submitForm()">
     <div>
       <label for="name">Name:</label>
-      <input id="name" type="text" [(ngModel)]="formData.name" name="name" required>
+      <input id="name" type="text" [(ngModel)]="formData.name" name="name" #name="ngModel" required>
+      @if(name.invalid && (name.dirty || name.touched)) {
+        <div class="alert">
+          @if (name.hasError('required')) {
+            <div>
+              Name is required.
+            </div>
+          }
+          </div>
+        }
     </div>
     <div>
       <label for="description">Description:</label>
@@ -25,7 +34,7 @@
       <textarea id="description" placeholder="Add details here . . ." [(ngModel)]="formData.description" name="description"></textarea>
     </div>
     <div>
-      <button type="submit">Add Task</button>
+      <button type="submit" [disabled]="!formData.name">Add Task</button>
     </div>
   </form>
 </div>
