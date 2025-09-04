@@ -34,7 +34,11 @@ export class TaskService{
     }
 
     public addTask(id:string, body:any) {
-        return this.http.post(this.urlLists+'/'+id,body);
+        return this.http.post(this.urlLists+'/'+id+'/tasks',body);
+    }
+
+    public getTask(id:string, tid:string) {
+      return this.http.get<any>(this.urlLists+"/"+id+"tasks/"+tid);
     }
 
 

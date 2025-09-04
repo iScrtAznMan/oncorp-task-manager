@@ -1,0 +1,48 @@
+//from chatgpt, normaly I would use prop-vars
+// Font Families
+$font-family-sans: 'Helvetica Neue', Arial, sans-serif;
+$font-family-serif: 'Georgia', serif;
+$font-family-mono: 'Courier New', monospace;
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Line Heights
+$line-height-base: 1.5;
+$line-height-heading: 1.2;
+
+// Font Sizes (Base is 1rem = 16px)
+$font-size-xs: 0.75rem;   // 12px
+$font-size-sm: 0.875rem;  // 14px
+$font-size-base: 1rem;    // 16px
+$font-size-md: 1.125rem;  // 18px
+$font-size-lg: 1.25rem;   // 20px
+$font-size-xl: 1.5rem;    // 24px
+$font-size-2xl: 2rem;     // 32px
+$font-size-3xl: 3rem;     // 48px
+
+// Primary Color Scheme
+$color-primary: #0058b6;
+$color-secondary: #6c757d;
+$color-success: #28a745;
+$color-danger: #dc3545;
+$color-warning: #ffc107;
+$color-info: #17a2b8;
+$color-light: #f8f9fa;
+$color-dark: #343a40;
+
+// Grayscale
+$color-white: #ffffff;
+$color-black: #000000;
+$color-gray: #6c757d;
+
+// Text Colors
+$text-color: #212529;
+$text-muted: $color-gray;
+
+// Backgrounds
+$background-body: #ffffff;
+$background-dark: #1e1e1e;

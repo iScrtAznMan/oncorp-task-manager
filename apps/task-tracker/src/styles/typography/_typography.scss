@@ -1,0 +1,72 @@
+//from chatgpt
+@import './variables';
+@import './mixins';
+
+body {
+  @include font($font-size-base);
+  color: #333;
+  margin: 0;
+  padding: 0;
+  font-family: $font-family-sans;
+}
+
+// Headings
+h1 {
+  @include font($font-size-3xl, $font-weight-bold, $line-height-heading);
+}
+h2 {
+  @include font($font-size-2xl, $font-weight-bold, $line-height-heading);
+}
+h3 {
+  @include font($font-size-xl, $font-weight-medium, $line-height-heading);
+}
+h4 {
+  @include font($font-size-lg, $font-weight-medium);
+}
+h5 {
+  @include font($font-size-md, $font-weight-regular);
+}
+h6 {
+  @include font($font-size-sm, $font-weight-regular);
+}
+
+// Paragraph
+p {
+  @include font($font-size-base);
+  margin-bottom: 1rem;
+}
+
+// Utility Classes
+.text-xs { font-size: $font-size-xs; }
+.text-sm { font-size: $font-size-sm; }
+.text-md { font-size: $font-size-md; }
+.text-lg { font-size: $font-size-lg; }
+.text-xl { font-size: $font-size-xl; }
+.text-bold { font-weight: $font-weight-bold; }
+.text-italic { font-style: italic; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+// Text color utilities
+.text-primary   { color: $color-primary; }
+.text-secondary { color: $color-secondary; }
+.text-success   { color: $color-success; }
+.text-danger    { color: $color-danger; }
+.text-warning   { color: $color-warning; }
+.text-info      { color: $color-info; }
+.text-light     { color: $color-light; }
+.text-dark      { color: $color-dark; }
+.text-muted     { color: $text-muted; }
+.text-white     { color: $color-white; }
+
+// Background color utilities
+.bg-primary   { background-color: $color-primary; color: $color-white; }
+.bg-secondary { background-color: $color-secondary; color: $color-white; }
+.bg-success   { background-color: $color-success; color: $color-white; }
+.bg-danger    { background-color: $color-danger; color: $color-white; }
+.bg-warning   { background-color: $color-warning; color: $color-black; }
+.bg-info      { background-color: $color-info; color: $color-white; }
+.bg-light     { background-color: $color-light; color: $color-black; }
+.bg-dark      { background-color: $color-dark; color: $color-white; }
+.bg-white     { background-color: $color-white; color: $color-black; }

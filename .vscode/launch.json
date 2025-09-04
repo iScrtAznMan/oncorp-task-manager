@@ -6,7 +6,7 @@
       "request": "launch",
       "name": "Debug task-tracker-nest with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "task-tracker-nest"],
+      "runtimeArgs": ["nx", "run", "task-tracker-nest:serve:development"],
       "env": {
         "NODE_OPTIONS": "--inspect=9229"
       },

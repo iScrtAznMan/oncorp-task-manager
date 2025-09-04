@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+//Generated via chatgpt, ideally we just use material typography but for sake of time we will use chatgpt
+@import 'styles/typography/typography';
+
+html,body, .main{
+  height:100vh;
+  margin: 0;
+}

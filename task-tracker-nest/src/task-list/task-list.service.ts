@@ -37,6 +37,7 @@ export class TaskListService {
     tlv.id = this.nextId();
     this.tasksListView.set(tlv.id, tlv);
     let taskList = new TaskList();
+    taskList.tasks = new Map();
     taskList.id = tlv.id;
     this.taskLists.set(tlv.id, taskList);
     return tlv;
@@ -47,8 +48,13 @@ export class TaskListService {
     task.id=this.nextId();
     task.name = createTaskDto.name;
     task.complete = createTaskDto.complete;
-    this.taskLists[id].tasks.push(task);
-    this.taskLists[id].todo.push(task.id);
+    let tasklist = this.taskLists.get(id);
+    tasklist.tasks.set(task.id, task);
+    if(task.complete) {
+      tasklist.completed.add(task.id);
+    } else {
+      tasklist.todo.add(task.id);
+    } 
   }
 
   findAll() {
