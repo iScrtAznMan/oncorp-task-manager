@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { KeyValuePipe } from '@angular/common';
 import { TaskList } from './task-list';
 import { TaskService } from '../../service/task-list.service';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +7,7 @@ import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-all-task-list',
-  imports: [FormsModule, RouterLink, KeyValuePipe],
+  imports: [FormsModule, RouterLink],
   templateUrl: './all-task-list-component.html',
   styleUrl: './all-task-list-component.scss',
 })

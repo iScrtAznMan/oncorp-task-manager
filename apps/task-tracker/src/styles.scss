@@ -72,23 +72,21 @@ table {
 }
 
 thead {
-  background-color: $color-black;
-  color:$color-white;
   text-align: left;
 }
 
 th, td {
-  color: $color-white;
   padding:1rem;
-  border-bottom: 1px solid $color-white;
+  border-bottom: 1px solid $color-black;
 }
-tbody{
-  background-color: $color-secondary;
+
+tr:last-child td {
+  border-bottom: 0;
 }
 
 tbody tr:hover {
   align-items: center;
   padding:1rem;
   cursor: default;
-  background-color: $color-dark;
+  background-color: gray;
 }
