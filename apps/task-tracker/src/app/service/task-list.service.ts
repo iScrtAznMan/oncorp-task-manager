@@ -38,7 +38,15 @@ export class TaskService{
     }
 
     public getTask(id:string, tid:string) {
-      return this.http.get<any>(this.urlLists+"/"+id+"tasks/"+tid);
+      return this.http.get<any>(this.urlLists+"/"+id+"/tasks/"+tid);
+    }
+
+    public updateTask(id:string, tid:string, body:any) {
+      return this.http.put(this.urlLists+"/"+id+"/tasks/"+tid, body);
+    }
+
+    public deleteTask(id:string, tid:string) {
+      return this.http.delete(this.urlLists+"/"+id+"/tasks/"+tid);
     }
 
 

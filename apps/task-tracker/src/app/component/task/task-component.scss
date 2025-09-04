@@ -1,0 +1,18 @@
+.task{
+  display:flex;
+  width:auto;
+  padding: 1rem;
+  gap:1rem;
+  border: solid black;
+  justify-content: space-between;
+}
+
+
+
+.delete-button{
+  border: solid red;
+  border-radius:25%;
+  color:red;
+  margin: .1rem;
+  padding: .1rem
+}

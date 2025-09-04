@@ -21,7 +21,7 @@ export class TaskListService {
   }
 
   getTask(id:number) {
-    return this.taskLists[id];
+    return this.taskLists.get(id);
   }
 
   updateStats(id:number) {
@@ -51,7 +51,7 @@ export class TaskListService {
     let tasklist = this.taskLists.get(id);
     tasklist.tasks.set(task.id, task);
     if(task.complete) {
-      tasklist.completed.add(task.id);
+      tasklist.complete.add(task.id);
     } else {
       tasklist.todo.add(task.id);
     } 
@@ -66,7 +66,7 @@ export class TaskListService {
   }
 
   findTasks(id:number) {
-    return this.taskLists[id].tasks;
+    return this.taskLists[id];
   }
 
   update(id: number, updateTaskListDto: UpdateTaskListDto) {

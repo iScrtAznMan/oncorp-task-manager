@@ -15,8 +15,9 @@ export class TaskListView {
 // child datastructure separate from view to improve performance. if in a DB, would be the separate join table (replace Sets with status columns).
 export class TaskList {
     id:number;
+
     tasks:Map<number, Task> = new Map();
-    completed:Set<number> = new Set();
+    complete:Set<number> = new Set();
     todo:Set<number> = new Set();
     inprogress:Set<number> = new Set();
 }

@@ -1,10 +1,3 @@
-<p>
-    testing if we are working
-</p>
-<p>
-    {{taskList?.name}}
-</p>
-
 <h2>Add new task list:</h2>
 <form (ngSubmit)="submitForm()">
     <label for="name">Name:</label>
@@ -16,9 +9,9 @@
 </form>
 
 <ol>
-    @for(item of this.tasks; track $index) {
+    @for(item of this.tasks?.tasks; track $index) {
         <li>
-            {{item.name}} | {{item.complete}}
+            <a [routerLink]="['tasks', item.id]">{{item.name}}</a> | {{item.complete}}
         </li>
     } @empty {
         <li>No tasks in this list.</li>

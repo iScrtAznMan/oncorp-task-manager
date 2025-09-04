@@ -4,10 +4,13 @@ import { TaskService } from '../../service/task-list.service';
 import { TaskList } from '../all-task-list/task-list';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Task } from './task';
+import { switchMap } from 'rxjs';
+import { TaskListDto } from './task-list-dto';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-task-list',
-    imports:[FormsModule],
+    imports:[FormsModule, RouterLink],
     templateUrl: './task-list-component.html',
     styleUrl: './task-list-component.css',
 })
@@ -15,7 +18,7 @@ export class TaskListComponent {
     readonly taskId:string;
     private route = inject(ActivatedRoute);
     taskList?:TaskList;
-    tasks:Task[] = [];
+    tasks?:TaskListDto;
 
     formData={
         name:'',
@@ -36,9 +39,11 @@ export class TaskListComponent {
     }
 
     public submitForm(){
-        this.taskService.addTask(this.taskId, this.formData).subscribe({
+        this.taskService.addTask(this.taskId, this.formData)
+        .pipe(switchMap(()=>this.taskService.getTasks(this.taskId)))
+        .subscribe({
           next:(res) => {
-
+            this.tasks = res;
           }
         });
     }

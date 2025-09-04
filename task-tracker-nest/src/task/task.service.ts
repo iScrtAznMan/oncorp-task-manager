@@ -4,10 +4,17 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 import { TaskListService } from '../task-list/task-list.service';
 import { TaskList } from '../task-list/entities/task-list.entity';
 import { Task } from './entities/task.entity';
+import { TaskListDto } from './dto/tasklist.dto';
 
 @Injectable()
 export class TaskService {
   constructor(private taskListService: TaskListService){}
+
+  toCdo(tl:TaskList) {
+      let dto = new TaskListDto(tl);
+      console.log(dto);
+      return dto;
+  }
 
   updateStats(tlId:number) {
     this.taskListService.updateStats(tlId);
@@ -18,13 +25,14 @@ export class TaskService {
   }
 
   findAll(tlId) {
+    console.log(this.taskListService);
     let taskList:TaskList = this.taskListService.getTask(tlId);
     return taskList;
   }
 
   findOne(tlId:number, id: number) {
     let taskList:TaskList = this.taskListService.getTask(tlId);
-    return taskList.tasks[id];
+    return taskList.tasks.get(id);
   }
 
   update(tlId:number, id: number, updateTaskDto: UpdateTaskDto) {
@@ -33,7 +41,7 @@ export class TaskService {
     task.name = updateTaskDto.name;
     task.description = updateTaskDto.description;
     if(task.complete != updateTaskDto.complete) {
-      taskList.completed.add(id);
+      taskList.complete.add(id);
       taskList.inprogress.delete(id);
       taskList.todo.delete(id);
     }
@@ -43,12 +51,12 @@ export class TaskService {
     }
     task.complete = updateTaskDto.complete;
     task.inprogress = updateTaskDto.inprogress;
-    return `This action updates a #${id} task`;
+    return task;
   }
 
   remove(tlId:number, id: number) {
     let taskList:TaskList = this.taskListService.getTask(tlId);
-    taskList.completed.delete(id);
+    taskList.complete.delete(id);
     taskList.inprogress.delete(id);
     taskList.todo.delete(id);
     return taskList.tasks.delete(id);
