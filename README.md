@@ -4,6 +4,8 @@ Simple Task Tracking app that runs on a local enviornment. Nx project utilizing 
 
 ## Run tasks
 
+First run `npm install`
+
 ### Frontend
 
 To run the dev server for your app, use:
