@@ -1,12 +1,9 @@
-.task {
-  margin: auto;
-}
-
 .row {
   display: flex;
   flex-direction: row;
   gap:1rem;
-
+  min-width: 20rem;
+  padding-bottom: .2rem;
 }
 
 .row:last-child {

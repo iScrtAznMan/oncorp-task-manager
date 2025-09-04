@@ -12,9 +12,9 @@
   <tbody>
     @for(item of this.tasks?.tasks; track $index) {
       <tr class="task-row" [routerLink]="['tasks', item.id]">
-        <th>
+        <td>
           {{$index}}
-        </th>
+        </td>
         <td>
           {{item.name}}
         </td>
@@ -22,7 +22,11 @@
           {{item.complete}}
         </td>
       </tr>
-    } @empty { No tasks in this list. }
+    } @empty {
+      <tr>
+        <th colspan="3">No tasks in this list.</th>
+      </tr>
+    }
   </tbody>
 </table>
 

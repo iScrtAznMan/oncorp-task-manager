@@ -5,10 +5,6 @@
   </div>
   <div class="input-body">
     <div class="row">
-      <div>Description:</div>
-      <div>{{this.task?.description}}</div>
-    </div>
-    <div class="row">
       <div>Completed:</div>
       <div>
         <input
@@ -17,6 +13,10 @@
           (change)="onCompleteChange($event)"
         />
       </div>
+    </div>
+    <div class="row">
+      <div>Description:</div>
+      <div>{{this.task?.description}}</div>
     </div>
     <div class="row">
       <a class="delete-button button" (click)="deleteTask($event)">Delete</a>

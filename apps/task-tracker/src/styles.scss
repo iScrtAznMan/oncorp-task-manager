@@ -68,6 +68,7 @@ table {
   border-collapse: collapse;
   margin-top:1rem;
   box-shadow: 0 0 .5rem rgb(0,0,0,0.1);
+  border-radius: 1rem;
 }
 
 thead {
@@ -82,17 +83,12 @@ th, td {
   border-bottom: 1px solid $color-white;
 }
 tbody{
-  background-color: $color-dark;
-}
-
-tbody tr:nth-child(even) {
   background-color: $color-secondary;
-  color:$color-white;
 }
 
 tbody tr:hover {
   align-items: center;
   padding:1rem;
   cursor: default;
-  filter:brightness(85%);
+  background-color: $color-dark;
 }

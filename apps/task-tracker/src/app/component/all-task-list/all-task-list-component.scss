@@ -1,4 +1,20 @@
 .task-list {
   display:flex;
-  gap:1rem;
+  flex-direction: column;
+  flex: auto;
+}
+.task-row {
+  display: flex;
+}
+.task-element{
+  padding: .25rem;
+  flex:1 1 auto;
+  cursor: pointer;
+  &:hover{
+    background-color: gray;
+  }
+}
+.container{
+  display: flex;
+  flex-direction: column;
 }

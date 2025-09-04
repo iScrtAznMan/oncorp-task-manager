@@ -1,35 +1,54 @@
-<h1>Current Task Lists:</h1>
-
-<ul>
+<div class="container">
+  <h2>Categories</h2>
+  <div class="task-list">
     @for (item of this.taskList ; track item.id) {
-        <li class="task-list">
-            <a [routerLink]="['lists', item.id]">{{item.name}}</a>
-            <input value="Delete" type="button" class="delete-button button" (click)="deleteList(item.id)"/>
-        </li>
+    <div class="task-row">
+      <div class="task-element" [routerLink]="['lists', item.id]">
+        <div>{{item.name}}</div>
+      </div>
+      <div class="delete-button">
+        <input
+          (click)="deleteList(item.id)"
+          value="Delete"
+          type="button"
+          class="delete-button button"
+        />
+      </div>
+    </div>
     } @empty {
-        <li>No items found.</li>
+    <div class="task-row">No items found.</div>
     }
-</ul>
-<hr>
+  </div>
+</div>
+<hr />
 <div class="input">
   <div class="input-header">Add new task list:</div>
   <div class="input-body">
     <form (ngSubmit)="submitForm()">
       <label for="name">Name:</label>
-      <input id="name" type="text" [(ngModel)]="formData.name" name="name" #name="ngModel" required>
+      <input
+        id="name"
+        type="text"
+        [(ngModel)]="formData.name"
+        name="name"
+        #name="ngModel"
+        required
+      />
       @if(name.invalid && (name.dirty || name.touched)) {
-        <div class="alert">
-          @if (name.hasError('required')) {
-            <div>
-              Name is required.
-            </div>
-          }
-          </div>
+      <div class="alert">
+        @if (name.hasError('required')) {
+        <div>Name is required.</div>
         }
-      <br/>
-      <button class="button submit-button" type="submit" [disabled]="!formData.name">Add Task List</button>
-  </form>
+      </div>
+      }
+      <br />
+      <button
+        class="button submit-button"
+        type="submit"
+        [disabled]="!formData.name"
+      >
+        Add Task List
+      </button>
+    </form>
   </div>
 </div>
-
-
