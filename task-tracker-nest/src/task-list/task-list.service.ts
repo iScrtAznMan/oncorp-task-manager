@@ -20,19 +20,19 @@ export class TaskListService {
     return id;
   }
 
-  getTask(id:number) {
+  getTask(id: number) {
     return this.taskLists.get(id);
   }
 
-  updateStats(id:number) {
-    let tlv:TaskListView = this.tasksListView[id];
+  updateStats(id: number) {
+    let tlv: TaskListView = this.tasksListView[id];
     tlv.completed = this.taskLists.get(id).complete.size;
     tlv.todo = this.taskLists.get(id).todo.size;
     tlv.inprogress = this.taskLists.get(id).inprogress.size;
   }
 
   create(createTaskListDto: CreateTaskListDto) {
-    let tlv:TaskListView = new TaskListView();
+    let tlv: TaskListView = new TaskListView();
     tlv.name = createTaskListDto.name;
     tlv.id = this.nextId();
     this.tasksListView.set(tlv.id, tlv);
@@ -51,20 +51,20 @@ export class TaskListService {
     return this.tasksListView[id];
   }
 
-  findTasks(id:number) {
+  findTasks(id: number) {
     return this.taskLists[id];
   }
 
   update(id: number, updateTaskListDto: UpdateTaskListDto) {
-    let tlv =this.tasksListView.get(id);
+    let tlv = this.tasksListView.get(id);
     tlv.name = updateTaskListDto.name;
-    tlv.priority = updateTaskListDto.priority
-    this.tasksListView.set(id, tlv)
+    tlv.priority = updateTaskListDto.priority;
+    this.tasksListView.set(id, tlv);
     return tlv;
   }
 
   remove(id: number) {
-    if(this.tasksListView.get(id)) {
+    if (this.tasksListView.get(id)) {
       this.tasksListView.delete(id);
       this.taskLists.delete(id);
       return true;

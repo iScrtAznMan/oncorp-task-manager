@@ -8,22 +8,22 @@ import { TaskListDto } from './dto/tasklist.dto';
 
 @Injectable()
 export class TaskService {
-  constructor(private taskListService: TaskListService){}
+  constructor(private taskListService: TaskListService) {}
 
-  toCdo(tl:TaskList) {
-      let dto = new TaskListDto(tl);
-      return dto;
+  toCdo(tl: TaskList) {
+    let dto = new TaskListDto(tl);
+    return dto;
   }
 
-  updateStats(tlId:number) {
+  updateStats(tlId: number) {
     this.taskListService.updateStats(tlId);
   }
 
   create(tlId, createTaskDto: CreateTaskDto) {
     let task = new Task();
-    task.id=this.taskListService.nextId();
-    task.name=createTaskDto.name;
-    task.description=createTaskDto.description;
+    task.id = this.taskListService.nextId();
+    task.name = createTaskDto.name;
+    task.description = createTaskDto.description;
     let taskList = this.taskListService.getTask(tlId);
     taskList.tasks.set(task.id, task);
     taskList.todo.add(task.id);
@@ -31,26 +31,26 @@ export class TaskService {
   }
 
   findAll(tlId) {
-    let taskList:TaskList = this.taskListService.getTask(tlId);
+    let taskList: TaskList = this.taskListService.getTask(tlId);
     return taskList;
   }
 
-  findOne(tlId:number, id: number) {
-    let taskList:TaskList = this.taskListService.getTask(tlId);
+  findOne(tlId: number, id: number) {
+    let taskList: TaskList = this.taskListService.getTask(tlId);
     return taskList.tasks.get(id);
   }
 
-  update(tlId:number, id: number, updateTaskDto: UpdateTaskDto) {
-    let taskList:TaskList = this.taskListService.getTask(tlId);
-    let task:Task = taskList.tasks.get(id);
+  update(tlId: number, id: number, updateTaskDto: UpdateTaskDto) {
+    let taskList: TaskList = this.taskListService.getTask(tlId);
+    let task: Task = taskList.tasks.get(id);
     task.name = updateTaskDto.name;
     task.description = updateTaskDto.description;
-    if(task.complete != updateTaskDto.complete) {
+    if (task.complete != updateTaskDto.complete) {
       taskList.complete.add(id);
       taskList.inprogress.delete(id);
       taskList.todo.delete(id);
     }
-    if(task.inprogress != updateTaskDto.inprogress) {
+    if (task.inprogress != updateTaskDto.inprogress) {
       taskList.todo.delete(id);
       taskList.inprogress.add(id);
     }
@@ -59,8 +59,8 @@ export class TaskService {
     return task;
   }
 
-  remove(tlId:number, id: number) {
-    let taskList:TaskList = this.taskListService.getTask(tlId);
+  remove(tlId: number, id: number) {
+    let taskList: TaskList = this.taskListService.getTask(tlId);
     taskList.complete.delete(id);
     taskList.inprogress.delete(id);
     taskList.todo.delete(id);

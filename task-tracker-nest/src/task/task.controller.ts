@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
@@ -14,7 +22,7 @@ export class TaskController {
   }
 
   @Get()
-  findAll(@Param('tlId')tlId):TaskListDto {
+  findAll(@Param('tlId') tlId): TaskListDto {
     return this.taskService.toCdo(this.taskService.findAll(+tlId));
   }
 
@@ -24,12 +32,16 @@ export class TaskController {
   }
 
   @Patch(':id')
-  update(@Param('tlId') tlId, @Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
-    return this.taskService.update(+tlId,+id, updateTaskDto);
+  update(
+    @Param('tlId') tlId,
+    @Param('id') id: string,
+    @Body() updateTaskDto: UpdateTaskDto
+  ) {
+    return this.taskService.update(+tlId, +id, updateTaskDto);
   }
 
   @Delete(':id')
   remove(@Param('tlId') tlId, @Param('id') id: string) {
-    return this.taskService.remove(+tlId,+id);
+    return this.taskService.remove(+tlId, +id);
   }
 }
