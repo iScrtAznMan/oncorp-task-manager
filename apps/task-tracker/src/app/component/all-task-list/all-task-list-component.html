@@ -1,9 +1,9 @@
 <h1>Current Task Lists:</h1>
 
 <ul>
-    @for (item of this.taskList | keyvalue; track item.key) {
+    @for (item of this.taskList ; track item.id) {
         <li>
-            <a [routerLink]="['lists', item.key]">{{item.value.name}}</a>
+            <a [routerLink]="['lists', item.id]">{{item.value.name}}</a>
         </li>
     } @empty {
         <li>No items found.</li>

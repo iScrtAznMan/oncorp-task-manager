@@ -13,7 +13,7 @@ import { switchMap } from 'rxjs';
   styleUrl: './all-task-list-component.css',
 })
 export class AllTaskListComponent {
-  public taskList: Map<number,TaskList> = new Map();
+  public taskList: TaskList[] = [];
 
   formData={
     name:''
@@ -27,11 +27,11 @@ export class AllTaskListComponent {
   submitForm() {
     this.taskService.addTaskList(this.formData)
     .pipe(switchMap(()=>this.taskService.getAllTaskList()))
-    .subscribe(data => this.taskList = data as Map<number, TaskList>);
+    .subscribe(data => this.taskList = data);
   }
 
   ngOnInit(){
-    this.taskService.getAllTaskList().subscribe(data => this.taskList = data as Map<number, TaskList>);
+    this.taskService.getAllTaskList().subscribe(data => this.taskList = data as TaskList[]);
   }
 
 }

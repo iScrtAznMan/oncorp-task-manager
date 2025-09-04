@@ -1,14 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTaskListDto } from './dto/create-task-list.dto';
 import { UpdateTaskListDto } from './dto/update-task-list.dto';
-import { TaskList } from './entities/task-list.entity';
-import { Task } from './entities/task.entity';
+import { TaskListView, TaskList } from './entities/task-list.entity';
+import { Task } from '../task/entities/task.entity';
 import { CreateTaskDto } from '../task/dto/create-task.dto';
+import { KeyValuePipe } from '@angular/common';
 
 @Injectable()
 export class TaskListService {
   //for now use an inMemory store, replace with document store or relation DB
-  private readonly tasksLists: Map<number, TaskList> = new Map();
+  private readonly tasksListView: Map<number, TaskListView> = new Map();
+  private readonly taskLists: Map<number, TaskList> = new Map();
 
   //TODO: replace with entity id from DBO
   private currId = 0;
@@ -18,12 +20,26 @@ export class TaskListService {
     return id;
   }
 
+  getTask(id:number) {
+    return this.taskLists[id];
+  }
+
+  updateStats(id:number) {
+    let tlv:TaskListView = this.tasksListView[id];
+    tlv.completed = this.taskLists[id].completed.size;
+    tlv.todo = this.taskLists[id].todo;
+    tlv.inprogress = this.taskLists[id].inprogress;
+  }
+
   create(createTaskListDto: CreateTaskListDto) {
-    let tasklist:TaskList = new TaskList();
-    tasklist.name = createTaskListDto.name;
-    tasklist.id = this.nextId();
-    this.tasksLists.set(tasklist.id, tasklist);
-    return tasklist;
+    let tlv:TaskListView = new TaskListView();
+    tlv.name = createTaskListDto.name;
+    tlv.id = this.nextId();
+    this.tasksListView.set(tlv.id, tlv);
+    let taskList = new TaskList();
+    taskList.id = tlv.id;
+    this.taskLists.set(tlv.id, taskList);
+    return tlv;
   }
 
   createTask(id:number, createTaskDto:CreateTaskDto) {
@@ -31,30 +47,36 @@ export class TaskListService {
     task.id=this.nextId();
     task.name = createTaskDto.name;
     task.complete = createTaskDto.complete;
-    this.tasksLists[id].tasks.push(task);
+    this.taskLists[id].tasks.push(task);
+    this.taskLists[id].todo.push(task.id);
   }
 
   findAll() {
-    return Object.fromEntries(this.tasksLists);
+    return Array.from(this.tasksListView.values());
   }
 
   findOne(id: number) {
-    return this.tasksLists[id];
+    return this.tasksListView[id];
   }
 
   findTasks(id:number) {
-    return this.findOne(id).tasks;
+    return this.taskLists[id].tasks;
   }
 
   update(id: number, updateTaskListDto: UpdateTaskListDto) {
-    let taskList =this.tasksLists.get(id);
-    taskList.name = updateTaskListDto.name;
-    taskList.tasks = updateTaskListDto.tasks;
-    this.tasksLists.set(id, taskList)
-    return taskList;
+    let tlv =this.tasksListView.get(id);
+    tlv.name = updateTaskListDto.name;
+    tlv.priority = updateTaskListDto.priority
+    this.tasksListView.set(id, tlv)
+    return tlv;
   }
 
   remove(id: number) {
-    return this.tasksLists.delete(id);
+    if(this.tasksListView[id]) {
+      this.tasksListView.delete(id);
+      this.taskLists.delete(id);
+      return true;
+    }
+    return false;
   }
 }

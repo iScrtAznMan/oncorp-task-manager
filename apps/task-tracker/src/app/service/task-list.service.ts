@@ -8,7 +8,7 @@ export class TaskService{
     private http = inject(HttpClient);
     private readonly url = 'http://localhost:3000/api/v1';
     private readonly urlLists = this.url+'/lists';
-    
+
 
     constructor(public httpClient:HttpClient){
     }
@@ -19,12 +19,17 @@ export class TaskService{
 
     public getAllTaskList() {
         let api = this.urlLists;
-        return this.http.get<Map<number,TaskList>>(api);
+        return this.http.get<TaskList[]>(api);
     }
 
     public getTaskList(id:string) {
         let api = this.urlLists+id;
         return this.http.get<TaskList>(api);
+    }
+
+    public getTasks(id:string) {
+      let api = this.urlLists+"/"+id+"/tasks";
+      return this.http.get<Task[]>(api);
     }
 
     public addTask(id:string, body:any) {

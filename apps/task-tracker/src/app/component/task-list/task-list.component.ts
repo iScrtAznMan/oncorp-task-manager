@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../service/task-list.service';
 import { TaskList } from '../all-task-list/task-list';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { Task } from './task';
 
 @Component({
     selector: 'app-task-list',
@@ -14,6 +15,7 @@ export class TaskListComponent {
     readonly taskId:string;
     private route = inject(ActivatedRoute);
     taskList?:TaskList;
+    tasks:Task[] = [];
 
     formData={
         name:'',
@@ -26,25 +28,26 @@ export class TaskListComponent {
 
     ngOnInit() {
         this.taskService.getTaskList(this.taskId).subscribe(data => this.taskList = data);
+        this.taskService.getTasks(this.taskId).subscribe(data => this.tasks = data);
     }
 
-    public getTask(id:string) {
-
+    public getTasks(id:string) {
+      this.taskService.getTasks(this.taskId).subscribe(data => this.tasks = data);
     }
 
     public submitForm(){
         this.taskService.addTask(this.taskId, this.formData).subscribe({
           next:(res) => {
-            
+
           }
         });
     }
 
-    public updateTask(){
+    public updateTask(id:string){
         return;
     }
 
-    public removeTask(){
+    public removeTask(id:string){
         return;
     }
 
