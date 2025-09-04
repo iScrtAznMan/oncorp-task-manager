@@ -12,7 +12,6 @@ export class TaskService {
 
   toCdo(tl:TaskList) {
       let dto = new TaskListDto(tl);
-      console.log(dto);
       return dto;
   }
 
@@ -25,7 +24,6 @@ export class TaskService {
   }
 
   findAll(tlId) {
-    console.log(this.taskListService);
     let taskList:TaskList = this.taskListService.getTask(tlId);
     return taskList;
   }
@@ -37,7 +35,7 @@ export class TaskService {
 
   update(tlId:number, id: number, updateTaskDto: UpdateTaskDto) {
     let taskList:TaskList = this.taskListService.getTask(tlId);
-    let task:Task = taskList.tasks[id];
+    let task:Task = taskList.tasks.get(id);
     task.name = updateTaskDto.name;
     task.description = updateTaskDto.description;
     if(task.complete != updateTaskDto.complete) {

@@ -1,16 +1,16 @@
-< class="task">
+<div class="task">
   <div>
     <div>Task Name:</div>
     <div>{{this.task?.name}}</div>
   </div>
   <div>
-    <div>Description</div>
+    <div>Description:</div>
     <div>{{this.task?.description}}</div>
   </div>
   <div>
-    <div>Completed:</div>
+    <div>Completed: <input type="checkbox" [checked]="this.task?.complete" (change)="onCompleteChange($event)"></div>
     <div>{{this.task?.complete}}</div>
   </div>
-  <input type="checkbox" [checked]="this.task?.complete" (change)="onCompleteChange($event)">
+
   <a class="delete-button" (click)="deleteTask($event)">Delete</a>
 </div>

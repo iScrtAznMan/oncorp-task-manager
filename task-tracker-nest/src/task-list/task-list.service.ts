@@ -26,9 +26,9 @@ export class TaskListService {
 
   updateStats(id:number) {
     let tlv:TaskListView = this.tasksListView[id];
-    tlv.completed = this.taskLists[id].completed.size;
-    tlv.todo = this.taskLists[id].todo;
-    tlv.inprogress = this.taskLists[id].inprogress;
+    tlv.completed = this.taskLists.get(id).complete.size;
+    tlv.todo = this.taskLists.get(id).todo.size;
+    tlv.inprogress = this.taskLists.get(id).inprogress.size;
   }
 
   create(createTaskListDto: CreateTaskListDto) {
@@ -54,7 +54,7 @@ export class TaskListService {
       tasklist.complete.add(task.id);
     } else {
       tasklist.todo.add(task.id);
-    } 
+    }
   }
 
   findAll() {

@@ -42,7 +42,7 @@ export class TaskService{
     }
 
     public updateTask(id:string, tid:string, body:any) {
-      return this.http.put(this.urlLists+"/"+id+"/tasks/"+tid, body);
+      return this.http.patch(this.urlLists+"/"+id+"/tasks/"+tid, body);
     }
 
     public deleteTask(id:string, tid:string) {
