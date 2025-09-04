@@ -1,13 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
-//Generated via chatgpt, ideally we just use material typography but for sake of time we will use chatgpt
+//typography via chatgpt, ideally we just use material typography but for sake of time we will use chatgpt.
+// it is using an older style deprecated mechanism
 @import 'styles/typography/typography';
 
+//use the whole page
 html,body, .main{
   height:100vh;
   margin: 0;
 }
 
+//buttons
 .button {
   display: inline-block;
   color: white;
@@ -38,6 +41,7 @@ html,body, .main{
   color:$color-danger;
 }
 
+//input forms
 .input {
   display: block;
   width: fit-content;
@@ -51,6 +55,7 @@ html,body, .main{
   color: $color-white;
   padding: .5rem 1rem;
 }
+
 .input-body {
   padding: auto;
   border-radius: 0 0 10px 10px;
@@ -58,3 +63,36 @@ html,body, .main{
   border: 1px solid $color-dark;
 }
 
+//tables
+table {
+  border-collapse: collapse;
+  margin-top:1rem;
+  box-shadow: 0 0 .5rem rgb(0,0,0,0.1);
+}
+
+thead {
+  background-color: $color-black;
+  color:$color-white;
+  text-align: left;
+}
+
+th, td {
+  color: $color-white;
+  padding:1rem;
+  border-bottom: 1px solid $color-white;
+}
+tbody{
+  background-color: $color-dark;
+}
+
+tbody tr:nth-child(even) {
+  background-color: $color-secondary;
+  color:$color-white;
+}
+
+tbody tr:hover {
+  align-items: center;
+  padding:1rem;
+  cursor: default;
+  filter:brightness(85%);
+}

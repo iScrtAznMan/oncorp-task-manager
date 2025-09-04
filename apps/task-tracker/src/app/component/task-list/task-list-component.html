@@ -1,11 +1,30 @@
-<h1>Current Tasks</h1>
-<ol>
-  @for(item of this.tasks?.tasks; track $index) {
-  <li>
-    <a [routerLink]="['tasks', item.id]">{{item.name}}</a> | {{item.complete}}
-  </li>
-  } @empty { No tasks in this list. }
-</ol>
+<table>
+  <caption>
+    <h2>Current Tasks</h2>
+  </caption>
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Task Name</th>
+      <th>Completed</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(item of this.tasks?.tasks; track $index) {
+      <tr class="task-row" [routerLink]="['tasks', item.id]">
+        <th>
+          {{$index}}
+        </th>
+        <td>
+          {{item.name}}
+        </td>
+        <td>
+          {{item.complete}}
+        </td>
+      </tr>
+    } @empty { No tasks in this list. }
+  </tbody>
+</table>
 
 <hr />
 
