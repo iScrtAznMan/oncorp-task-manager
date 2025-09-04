@@ -10,7 +10,7 @@ import { switchMap } from 'rxjs';
   selector: 'app-all-task-list',
   imports: [FormsModule, RouterLink, KeyValuePipe],
   templateUrl: './all-task-list-component.html',
-  styleUrl: './all-task-list-component.css',
+  styleUrl: './all-task-list-component.scss',
 })
 export class AllTaskListComponent {
   public taskList: TaskList[] = [];

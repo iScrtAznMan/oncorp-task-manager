@@ -20,7 +20,14 @@ export class TaskService {
   }
 
   create(tlId, createTaskDto: CreateTaskDto) {
-    return this.taskListService.createTask(tlId, createTaskDto);
+    let task = new Task();
+    task.id=this.taskListService.nextId();
+    task.name=createTaskDto.name;
+    task.description=createTaskDto.description;
+    let taskList = this.taskListService.getTask(tlId);
+    taskList.tasks.set(task.id, task);
+    taskList.todo.add(task.id);
+    return task;
   }
 
   findAll(tlId) {

@@ -14,7 +14,7 @@ export class TaskListService {
 
   //TODO: replace with entity id from DBO
   private currId = 0;
-  private nextId() {
+  nextId() {
     let id = this.currId;
     this.currId++;
     return id;
@@ -41,20 +41,6 @@ export class TaskListService {
     taskList.id = tlv.id;
     this.taskLists.set(tlv.id, taskList);
     return tlv;
-  }
-
-  createTask(id:number, createTaskDto:CreateTaskDto) {
-    let task = new Task()
-    task.id=this.nextId();
-    task.name = createTaskDto.name;
-    task.complete = createTaskDto.complete;
-    let tasklist = this.taskLists.get(id);
-    tasklist.tasks.set(task.id, task);
-    if(task.complete) {
-      tasklist.complete.add(task.id);
-    } else {
-      tasklist.todo.add(task.id);
-    }
   }
 
   findAll() {

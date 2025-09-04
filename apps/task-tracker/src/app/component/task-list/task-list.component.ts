@@ -22,6 +22,7 @@ export class TaskListComponent {
 
     formData={
         name:'',
+        description:'',
         complete:false,
     };
 

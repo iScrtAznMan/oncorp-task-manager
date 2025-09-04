@@ -2,16 +2,16 @@
 
 <ul>
     @for (item of this.taskList ; track item.id) {
-        <li>
+        <li class="task-list">
             <a [routerLink]="['lists', item.id]">{{item.name}}</a>
-            <button type="button" class="delete-button" (click)="deleteList(item.id)">Delete</button>
+            <input value="Delete" type="button" class="delete-button" (click)="deleteList(item.id)"/>
         </li>
     } @empty {
         <li>No items found.</li>
     }
 </ul>
-<h2>Add new task list:</h2>
-<br/>
+<hr>
+<div>Add new task list:</div>
 <form (ngSubmit)="submitForm()">
     <label for="name">Name:</label>
     <input id="name" type="text" [(ngModel)]="formData.name" name="name" required>

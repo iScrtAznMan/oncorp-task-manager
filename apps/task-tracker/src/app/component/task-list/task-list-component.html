@@ -1,19 +1,31 @@
-<h2>Add new task list:</h2>
-<form (ngSubmit)="submitForm()">
-    <label for="name">Name:</label>
-    <input id="name" type="text" [(ngModel)]="formData.name" name="name" required>
-    <label for="complete">Completed:</label>
-    <input id="complete" type="checkbox" [(ngModel)]="formData.complete" name="complete">
-    <br/>
-    <button type="submit">Add Task</button>
-</form>
-
+<h1>Current Tasks</h1>
 <ol>
-    @for(item of this.tasks?.tasks; track $index) {
-        <li>
-            <a [routerLink]="['tasks', item.id]">{{item.name}}</a> | {{item.complete}}
-        </li>
-    } @empty {
-        <li>No tasks in this list.</li>
-    }
+  @for(item of this.tasks?.tasks; track $index) {
+      <li>
+          <a [routerLink]="['tasks', item.id]">{{item.name}}</a> | {{item.complete}}
+      </li>
+  } @empty {
+      No tasks in this list.
+  }
 </ol>
+
+<hr>
+
+<div>
+  Add new task list:
+  <form (ngSubmit)="submitForm()">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" type="text" [(ngModel)]="formData.name" name="name" required>
+    </div>
+    <div>
+      <label for="description">Description:</label>
+    </div>
+    <div>
+      <textarea id="description" placeholder="Add details here . . ." [(ngModel)]="formData.description" name="description"></textarea>
+    </div>
+    <div>
+      <button type="submit">Add Task</button>
+    </div>
+  </form>
+</div>

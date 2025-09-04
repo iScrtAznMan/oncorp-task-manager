@@ -3,5 +3,6 @@ import { CreateTaskDto } from './create-task.dto';
 
 export class UpdateTaskDto extends PartialType(CreateTaskDto) {
     priority:number;
-
+    complete:boolean;
+    inprogress:boolean;
 }
