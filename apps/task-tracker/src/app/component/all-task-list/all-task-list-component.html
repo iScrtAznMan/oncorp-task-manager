@@ -3,7 +3,7 @@
 <ul>
     @for (item of this.taskList | keyvalue; track item.key) {
         <li>
-            <a [routerLink]="['taskList', item.key]">{{item.value.name}}</a>
+            <a [routerLink]="['lists', item.key]">{{item.value.name}}</a>
         </li>
     } @empty {
         <li>No items found.</li>

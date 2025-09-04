@@ -22,10 +22,8 @@ export class TaskListService {
     let tasklist:TaskList = new TaskList();
     tasklist.name = createTaskListDto.name;
     tasklist.id = this.nextId();
-    tasklist.tasks = [];
     this.tasksLists.set(tasklist.id, tasklist);
-    console.log(this.tasksLists);
-    return Object.fromEntries(this.tasksLists);
+    return tasklist;
   }
 
   createTask(id:number, createTaskDto:CreateTaskDto) {
@@ -37,7 +35,7 @@ export class TaskListService {
   }
 
   findAll() {
-    return this.tasksLists;
+    return Object.fromEntries(this.tasksLists);
   }
 
   findOne(id: number) {
@@ -57,7 +55,6 @@ export class TaskListService {
   }
 
   remove(id: number) {
-    this.tasksLists.delete(id);
-    return this.tasksLists;
+    return this.tasksLists.delete(id);
   }
 }

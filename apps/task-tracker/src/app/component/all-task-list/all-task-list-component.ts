@@ -4,6 +4,7 @@ import { TaskList } from './task-list';
 import { TaskService } from '../../service/task-list.service';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-all-task-list',
@@ -24,13 +25,13 @@ export class AllTaskListComponent {
   }
 
   submitForm() {
-    this.taskService.addTaskList(this.formData).subscribe({
-      next:(res)=> {this.taskList = res as Map<number,TaskList>}
-    })
+    this.taskService.addTaskList(this.formData)
+    .pipe(switchMap(()=>this.taskService.getAllTaskList()))
+    .subscribe(data => this.taskList = data as Map<number, TaskList>);
   }
 
   ngOnInit(){
-    this.taskService.getAllTaskList().subscribe(data => this.taskList = data);
+    this.taskService.getAllTaskList().subscribe(data => this.taskList = data as Map<number, TaskList>);
   }
 
 }

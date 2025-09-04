@@ -33,7 +33,11 @@ export class TaskListComponent {
     }
 
     public submitForm(){
-        
+        this.taskService.addTask(this.taskId, this.formData).subscribe({
+          next:(res) => {
+            
+          }
+        });
     }
 
     public updateTask(){

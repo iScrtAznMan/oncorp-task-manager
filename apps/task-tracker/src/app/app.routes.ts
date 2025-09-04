@@ -5,16 +5,16 @@ import { AllTaskListComponent } from './component/all-task-list/all-task-list-co
 
 export const appRoutes: Route[] = [
     {
-        path:'taskList/:id',
+        path:'lists/:id',
         component:TaskListComponent,
         children: [],
     },
     {
-        path:'taskList',
+        path:'lists',
         component:AllTaskListComponent,
     },
     {
         path:'',
-        component: App,
+        component: AllTaskListComponent,
     },
 ];
